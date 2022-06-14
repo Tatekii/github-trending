@@ -6,10 +6,14 @@ import Home from '../screens/home/home.screen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {MainTabParamList} from './types';
+import {useTheme} from '@react-navigation/native';
 
 const TabStack = createBottomTabNavigator<MainTabParamList>();
 
 const TabNavigator = () => {
+  const {colors} = useTheme();
+  console.log(colors);
+
   return (
     <TabStack.Navigator
       screenOptions={{

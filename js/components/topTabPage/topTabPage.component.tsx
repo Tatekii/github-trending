@@ -3,13 +3,17 @@ import React from 'react';
 import {Text, Button, View} from 'react-native';
 import {RootStackScreenProps} from '../../navigators/types';
 
-const TopTabPage = () => {
+type TopTabPageProps = {
+  topic: string;
+};
+
+const TopTabPage: React.FC<TopTabPageProps> = ({topic}) => {
   const {navigate} =
     useNavigation<RootStackScreenProps<'Detail'>['navigation']>();
 
   return (
-    <View>
-      <Text>test jump to detail</Text>
+    <View style={{flex: 1}}>
+      <Text style={{}}>Here Are {topic} Articles</Text>
       <Button
         title="JUMP"
         onPress={() => navigate('Detail', {id: '1234'})}></Button>

@@ -1,23 +1,31 @@
 import React, {useState} from 'react';
-import {LogBox} from 'react-native';
+import {LogBox, useColorScheme} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import RootNavigator from './src/navigators/rootNavigator';
-import Welcome from './src/screens/welcome/welcome.screen';
-import useInterval from './src/hooks/useInterval';
+import RootNavigator from './js/navigators/rootNavigator';
+import useInterval from './js/hooks/useInterval';
+import {NavigationContainer} from '@react-navigation/native';
+import {MyDarkTheme, MyLightTheme} from './js/themes';
 
 LogBox.ignoreLogs(['Remote debugger']);
 
 function App() {
-  const [showAd, setShowAd] = useState(true);
-  const [second] = useInterval(() => setShowAd(() => false), 3);
+  // const [showAd, setShowAd] = useState(true);
+  // const [second] = useInterval(() => setShowAd(() => false), 3);
+
+  const scheme = useColorScheme(); // theme
+  console.log(scheme);
 
   return (
     <SafeAreaProvider>
-      <RootNavigator />
+      {/* // TODO <NavigationContainer theme={scheme === 'dark' ? MyDarkTheme : DefaultTheme}> */}
+      <NavigationContainer
+        theme={scheme === 'dark' ? MyDarkTheme : MyLightTheme}>
+        <RootNavigator />
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 
-  // showAd ? <Welcome second={second} /> : <RootNavigator />;
+  // TODO showAd ? <Welcome second={second} /> : <RootNavigator />;
 }
 
 export default App;
