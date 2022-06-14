@@ -1,12 +1,8 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {Text} from 'react-native';
 
 const Favorite = () => {
-  return (
-    <SafeAreaView>
-      <Text>Im Favorite</Text>
-    </SafeAreaView>
-  );
+  return <Text>Im Favorite</Text>;
 };
 
 export default Favorite;

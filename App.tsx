@@ -13,9 +13,11 @@ function App() {
 
   return (
     <SafeAreaProvider>
-      {showAd ? <Welcome second={second} /> : <RootNavigator />}
+      <RootNavigator />
     </SafeAreaProvider>
   );
+
+  // showAd ? <Welcome second={second} /> : <RootNavigator />;
 }
 
 export default App;

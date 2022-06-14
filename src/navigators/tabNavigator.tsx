@@ -5,19 +5,16 @@ import My from '../screens/my/my.screen';
 import Home from '../screens/home/home.screen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {MainTabParamList} from './types';
 
-type TabStackParamList = {
-  Home: undefined;
-  Trending: undefined;
-  Favorite: undefined;
-  My: undefined;
-};
-
-const TabStack = createBottomTabNavigator<TabStackParamList>();
+const TabStack = createBottomTabNavigator<MainTabParamList>();
 
 const TabNavigator = () => {
   return (
-    <TabStack.Navigator>
+    <TabStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
       <TabStack.Screen
         name="Home"
         component={Home}
@@ -25,7 +22,7 @@ const TabNavigator = () => {
           tabBarIcon: ({size, focused, color}) => {
             return (
               <MaterialCommunityIcons
-                name="trending-up"
+                name={focused ? 'home-circle' : 'home-circle-outline'}
                 color={color}
                 size={size}
               />
@@ -34,9 +31,48 @@ const TabNavigator = () => {
           tabBarBadge: 3,
         }}
       />
-      <TabStack.Screen name="Trending" component={Trending} />
-      <TabStack.Screen name="Favorite" component={Favorite} />
-      <TabStack.Screen name="My" component={My} />
+      <TabStack.Screen
+        name="Trending"
+        component={Trending}
+        options={{
+          tabBarIcon: ({size, focused, color}) => {
+            return (
+              <MaterialCommunityIcons
+                name={focused ? 'fire-circle' : 'fire'}
+                color={color}
+                size={size}></MaterialCommunityIcons>
+            );
+          },
+        }}
+      />
+      <TabStack.Screen
+        name="Favorite"
+        component={Favorite}
+        options={{
+          tabBarIcon: ({size, focused, color}) => {
+            return (
+              <MaterialCommunityIcons
+                name={focused ? 'heart-box' : 'heart-box-outline'}
+                color={color}
+                size={size}></MaterialCommunityIcons>
+            );
+          },
+        }}
+      />
+      <TabStack.Screen
+        name="My"
+        component={My}
+        options={{
+          tabBarIcon: ({size, focused, color}) => {
+            return (
+              <MaterialCommunityIcons
+                name={focused ? 'emoticon-cool' : 'emoticon-cool-outline'}
+                color={color}
+                size={size}></MaterialCommunityIcons>
+            );
+          },
+        }}
+      />
     </TabStack.Navigator>
   );
 };

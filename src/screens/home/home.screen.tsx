@@ -1,11 +1,20 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import TopTabPage from '../../components/topTabPage/topTabPage.component';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+
+const TopTabStack = createMaterialTopTabNavigator();
 
 const Home = () => {
+  const insets = useSafeAreaInsets();
   return (
-    <SafeAreaView>
-      <Text>Im Home</Text>
-    </SafeAreaView>
+    <TopTabStack.Navigator
+      screenOptions={{
+        tabBarStyle: {backgroundColor: 'yellow', paddingTop: insets.top},
+      }}>
+      <TopTabStack.Screen name="toptab1" component={TopTabPage} />
+      <TopTabStack.Screen name="toptab2" component={TopTabPage} />
+    </TopTabStack.Navigator>
   );
 };
 

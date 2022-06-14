@@ -1,12 +1,8 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {Text} from 'react-native';
 
 const Trending = () => {
-  return (
-    <SafeAreaView>
-      <Text>Im Trending</Text>
-    </SafeAreaView>
-  );
+  return <Text>Im Trending</Text>;
 };
 
 export default Trending;
