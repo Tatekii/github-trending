@@ -10,7 +10,11 @@ const RootNavigator = () => {
   return (
     <RootStack.Navigator screenOptions={{headerShown: false}}>
       <RootStack.Screen name="Main" component={TabNavigator} />
-      <RootStack.Screen name="Detail" component={Detail} />
+      <RootStack.Screen
+        name="Detail"
+        component={Detail}
+        options={{headerShown: true}}
+      />
     </RootStack.Navigator>
   );
 };

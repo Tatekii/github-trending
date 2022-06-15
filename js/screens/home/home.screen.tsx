@@ -14,6 +14,7 @@ const Home = () => {
   return (
     <TopTabStack.Navigator
       screenOptions={{
+        lazy: true,
         tabBarStyle: {
           ...style.tabBar,
           paddingTop: insets.top,

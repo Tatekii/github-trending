@@ -5,22 +5,36 @@ import RootNavigator from './js/navigators/rootNavigator';
 import useInterval from './js/hooks/useInterval';
 import {NavigationContainer} from '@react-navigation/native';
 import {MyDarkTheme, MyLightTheme} from './js/themes';
+import {setupStore} from './js/store';
+import {Provider} from 'react-redux';
+import {persistStore} from 'redux-persist';
+import {PersistGate} from 'redux-persist/integration/react';
 
 LogBox.ignoreLogs(['Remote debugger']);
+
+// redux store
+const store = setupStore();
+
+// persis store
+const persistor = persistStore(store);
 
 function App() {
   // const [showAd, setShowAd] = useState(true);
   // const [second] = useInterval(() => setShowAd(() => false), 3);
 
   const scheme = useColorScheme(); // theme
-  console.log(scheme);
+  console.log('[THEME]=>', scheme);
 
   return (
     <SafeAreaProvider>
       {/* // TODO <NavigationContainer theme={scheme === 'dark' ? MyDarkTheme : DefaultTheme}> */}
       <NavigationContainer
         theme={scheme === 'dark' ? MyDarkTheme : MyLightTheme}>
-        <RootNavigator />
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <RootNavigator />
+          </PersistGate>
+        </Provider>
       </NavigationContainer>
     </SafeAreaProvider>
   );
